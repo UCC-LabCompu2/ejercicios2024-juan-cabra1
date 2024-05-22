@@ -1,9 +1,8 @@
 /**
  * Descripción
- * @method Nombre de la función
- * @param id A
- * @param value B
- * @return Valor que retorna
+ * @method convertirUnidades de la función
+ * @param {String}id A
+ * @param {number}value B
  */
 function convertirUnidades(id, value) {
     if (isNaN(value)) {
