@@ -143,3 +143,43 @@ function borrarCanvas(){
     const canvas=document.getElementById("myCanvas");
     canvas.width=canvas.width;
 }
+let dibujarCuadriculado = () =>
+{
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const anchoMax = canvas.width;
+    const alturaMax = canvas.height;
+    const paso= 20;
+    for(let i=paso;i<alturaMax;)
+    {
+        ctx.beginPath();
+        ctx.moveTo(0,i);
+        ctx.lineTo(anchoMax,i);
+        ctx.stroke();
+        ctx.closePath();
+        i += paso;
+    }
+    for(let i=paso;i<anchoMax;)
+    {
+        ctx.beginPath();
+        ctx.moveTo(i,0);
+        ctx.lineTo(i,alturaMax);
+        ctx.stroke();
+        ctx.closePath();
+        i += paso;
+    }
+    //linea horizontal
+    ctx.strokeStyle = "#ff071b";
+    ctx.beginPath();
+    ctx.moveTo(0,alturaMax/2);
+    ctx.lineTo(anchoMax,alturaMax/2);
+    ctx.stroke();
+    ctx.closePath();
+    //linea vertical
+    ctx.beginPath();
+    ctx.moveTo(anchoMax/2,0);
+    ctx.lineTo(anchoMax/2,alturaMax);
+    ctx.stroke();
+    ctx.closePath();
+
+}
