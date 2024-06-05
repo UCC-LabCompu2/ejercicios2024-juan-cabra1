@@ -103,3 +103,43 @@ let pasarvalores= () => {
        const unidad=document.getElementById("unidadades").value;
        window.open(`segundaWeb.html#${distancia}#${unidad}`)
 }
+let dibujar_circulo_cuadrado = () => {
+       const canvas = document.getElementById("myCanvas");
+       const ctx = canvas.getContext("2d");
+        const anchoMax = canvas.width;
+       const alturaMax = canvas.height;
+       const lado = 200;
+        const margen= 10;
+
+       ctx.fillStyle = "#98764";
+       ctx.fillRect(0 + margen, alturaMax-lado-margen, lado, lado);
+
+       ctx.arc(anchoMax/2, alturaMax/2, lado/2,0,2*Math.PI, false);
+        ctx.stroke();
+       ctx.fill();
+}
+let cargarEventListener = () =>{
+       document.getElementById("myCanvas").addEventListener("mousemove",dibujar);
+}
+var bandera;
+
+let dibujar = (event) => {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let posX = event.clientX +  canvas.offsetLeft;
+    let posY = event.clientY -  canvas.offsetLeft;
+    console.log(posX, posY);
+
+    canvas.onmousedown = function (){
+        bandera = true
+    };
+    canvas.onmouseup = function (){bandera= false};
+    if(bandera) {
+        ctx.fillRect(posX, posY, 5, 5);
+    }
+}
+function borrarCanvas(){
+    const canvas=document.getElementById("myCanvas");
+    canvas.width=canvas.width;
+}
