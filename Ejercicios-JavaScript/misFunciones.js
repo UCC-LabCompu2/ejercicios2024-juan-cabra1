@@ -64,19 +64,19 @@ convertirGR = (id) => {
  * @method mostrar_ocultar
  * @param {String} value - Contiene: val_mostrar, val_ocultar
  */
-   let mostrar_ocultar = (value) => {
+let mostrar_ocultar = (value) => {
     if(value==="val_mostrar"){
         document.getElementById("unDiv").style.display = 'block'
     }else if(value==="val_ocultar"){
         document.getElementById("unDiv").style.display = 'none'
     }
-   }
-   let suma = () => {
+}
+let suma = () => {
 
     const s1 = Number(document.getElementById("nums1").value);
-       const s2 = document.getElementById("nums2").value;
+    const s2 = document.getElementById("nums2").value;
     document.getElementById("totalS").innerHTML = s1+Number(s2);
-   }
+}
 let resta = () => {
 
     const s1 = document.getElementById("numr1").value;
@@ -99,27 +99,27 @@ let dividir = () => {
 
 
 let pasarvalores= () => {
-       const distancia=document.getElementById("distancia").value;
-       const unidad=document.getElementById("unidadades").value;
-       window.open(`segundaWeb.html#${distancia}#${unidad}`)
+    const distancia=document.getElementById("distancia").value;
+    const unidad=document.getElementById("unidadades").value;
+    window.open(`segundaWeb.html#${distancia}#${unidad}`)
 }
 let dibujar_circulo_cuadrado = () => {
-       const canvas = document.getElementById("myCanvas");
-       const ctx = canvas.getContext("2d");
-        const anchoMax = canvas.width;
-       const alturaMax = canvas.height;
-       const lado = 200;
-        const margen= 10;
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    const anchoMax = canvas.width;
+    const alturaMax = canvas.height;
+    const lado = 200;
+    const margen= 10;
 
-       ctx.fillStyle = "#98764";
-       ctx.fillRect(0 + margen, alturaMax-lado-margen, lado, lado);
+    ctx.fillStyle = "#98764";
+    ctx.fillRect(0 + margen, alturaMax-lado-margen, lado, lado);
 
-       ctx.arc(anchoMax/2, alturaMax/2, lado/2,0,2*Math.PI, false);
-        ctx.stroke();
-       ctx.fill();
+    ctx.arc(anchoMax/2, alturaMax/2, lado/2,0,2*Math.PI, false);
+    ctx.stroke();
+    ctx.fill();
 }
 let cargarEventListener = () =>{
-       document.getElementById("myCanvas").addEventListener("mousemove",dibujar);
+    document.getElementById("myCanvas").addEventListener("mousemove",dibujar);
 }
 var bandera;
 
@@ -182,4 +182,28 @@ let dibujarCuadriculado = () =>
     ctx.stroke();
     ctx.closePath();
 
+}
+let dibujarImagen = (posX , posY) =>{
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    console.log(posX, posY);
+    const img = new Image();
+    img.src = "images/auto.png";
+    canvas.width = canvas.width;
+    img.onload = function(){
+    ctx.drawImage(img,posX,posY);
+    }
+}
+let guardarlocalStorage = () =>{
+    let distancia=document.getElementById("distancia").value;
+    let unidad=document.getElementsByName("unidades")[0].value;
+    localStorage.setItem("unidadLS",unidad);
+    localStorage.setItem("distanciaLS",distancia);
+    window.open('2_web.html');
+
+}
+let cargarLocalStorage = () =>{
+    let cantidad = localStorage.getItem("distanciaLS");
+    let unidad = localStorage.getItem("unidadLS");
+    document.getElementById("dist").value = cantidad + " " + unidad;
 }
